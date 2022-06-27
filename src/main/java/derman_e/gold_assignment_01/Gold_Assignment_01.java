@@ -58,5 +58,7 @@ public final class Gold_Assignment_01 extends JavaPlugin implements Listener {
         super.onDisable();
     }
 
-    //@EventHandler
+    /* @EventHandler
+     *
+     */
 }
