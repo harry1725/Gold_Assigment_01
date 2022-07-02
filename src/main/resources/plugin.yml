@@ -1,10 +1,12 @@
 name: Gold_Assignment_01
-version: 1.0.0
-main: derman_e.gold_assignment_01.Gold_Assignment_01
+version: 1.0.1
+main: derman_e.gold_assignment_01.Main
 api-version: 1.19
 author: Derman_e
 description: 골드님이 내신 과제 제출용 플러그인.
 
 commands:
-  ga:
-    description: 플러그인 메인 커맨드입니다.
+  upgrade:
+    description: 주로 사용하는 손에 다이아몬드 검을 들고 있을 경우 날카로움 등급에 따라 100%/80%/60%/40%/20% 확률로 1/2/3/4/5 등급이 붙게 됩니다.
+  helpme:
+    description: 눈 앞에 철 골렘과 네더라이트 흉갑을 소환합니다.

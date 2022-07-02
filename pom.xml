@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>Derman_e</groupId>
-    <artifactId>Gold_Assignment_01</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>Main</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Gold_Assignment_01</name>

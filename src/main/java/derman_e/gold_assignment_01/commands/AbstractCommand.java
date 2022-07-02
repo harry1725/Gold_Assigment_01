@@ -1,6 +1,6 @@
 package derman_e.gold_assignment_01.commands;
 
-import derman_e.gold_assignment_01.Gold_Assignment_01;
+import derman_e.gold_assignment_01.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -8,10 +8,10 @@ import org.bukkit.command.TabExecutor;
 import java.util.List;
 
 public abstract class AbstractCommand implements TabExecutor {
-    protected Gold_Assignment_01 ga01;
+    protected Main ga01;
     private final String label;
 
-    public AbstractCommand(Gold_Assignment_01 plugin, String commandLabel) {
+    public AbstractCommand(Main plugin, String commandLabel) {
         this.ga01 = plugin;
         this.label = commandLabel;
     }
