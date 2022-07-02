@@ -8,8 +8,11 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class GA_Commands extends AbstractCommand {
+    public final Logger logger = Logger.getLogger("GA");
+
     public GA_Commands(Main plugin, String commandLabel) {
         super(plugin, commandLabel);
     }
