@@ -1,7 +1,6 @@
 package derman_e.gold_assignment_01.commands;
 
 import derman_e.gold_assignment_01.main;
-import derman_e.gold_assignment_01.main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
