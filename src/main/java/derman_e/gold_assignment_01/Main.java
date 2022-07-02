@@ -4,7 +4,6 @@ import derman_e.gold_assignment_01.commands.GA_Commands;
 import derman_e.gold_assignment_01.items.GAItems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
