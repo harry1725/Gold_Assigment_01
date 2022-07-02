@@ -6,7 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerAnimationEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
@@ -18,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public final class Main extends JavaPlugin implements Listener {
+public final class main extends JavaPlugin implements Listener {
     PluginDescriptionFile pdfFile = this.getDescription();
     PluginManager pManager = Bukkit.getPluginManager();
 
@@ -45,7 +44,7 @@ public final class Main extends JavaPlugin implements Listener {
 
         pManager.registerEvents(this, this);
 
-        Main.console(ChatColor.GOLD + pfName + ChatColor.WHITE + " is now ENABLED!");
+        main.console(ChatColor.GOLD + pfName + ChatColor.WHITE + " is now ENABLED!");
 
         super.onEnable();
 
@@ -53,7 +52,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        Main.console(ChatColor.GOLD + pfName + ChatColor.WHITE + " is now DISABLED!");
+        main.console(ChatColor.GOLD + pfName + ChatColor.WHITE + " is now DISABLED!");
         super.onDisable();
     }
 

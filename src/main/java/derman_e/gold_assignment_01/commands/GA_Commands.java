@@ -1,6 +1,7 @@
 package derman_e.gold_assignment_01.commands;
 
-import derman_e.gold_assignment_01.Main;
+import derman_e.gold_assignment_01.main;
+import derman_e.gold_assignment_01.main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
 public class GA_Commands extends AbstractCommand {
     public final Logger logger = Logger.getLogger("GA");
 
-    public GA_Commands(Main plugin, String commandLabel) {
+    public GA_Commands(main plugin, String commandLabel) {
         super(plugin, commandLabel);
     }
 

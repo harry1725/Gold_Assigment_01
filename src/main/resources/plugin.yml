@@ -1,6 +1,6 @@
 name: Gold_Assignment_01
 version: 1.0.2
-main: derman_e.gold_assignment_01.Main
+main: derman_e.gold_assignment_01.main
 api-version: 1.19
 author: Derman_e
 description: 골드님이 내신 과제 제출용 플러그인.
