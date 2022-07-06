@@ -21,11 +21,10 @@ import java.util.logging.Logger;
 public class GA_Events implements Listener {
     public final Logger logger = Logger.getLogger("Minecraft");
     public static main Main;
-    private final List<Player> doubleJump;
+    private final List<Player> doubleJump = new ArrayList<>();
 
     public GA_Events(main plugin) {
         Main = plugin;
-        doubleJump = new ArrayList<>();
     }
 
     @EventHandler
@@ -92,8 +91,8 @@ public class GA_Events implements Listener {
         Block block = Objects.requireNonNull(event.getTo()).getBlock();
 
         if (!block.isEmpty()) {
-            doubleJump.remove(player);
             player.setAllowFlight(true);
+            doubleJump.remove(player);
         }
     }
 
