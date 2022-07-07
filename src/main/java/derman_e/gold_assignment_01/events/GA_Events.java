@@ -4,6 +4,7 @@ import derman_e.gold_assignment_01.main;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -55,7 +56,7 @@ public class GA_Events implements Listener {
                         cancel();
                     }
                 }
-            }.runTaskTimer(Main, 0, 1);
+            }.runTaskTimer(Main, 0L, 1L);
         } else {
             time[0] = 20;
         }
@@ -81,7 +82,7 @@ public class GA_Events implements Listener {
             player.setAllowFlight(false);
             player.setFlying(false);
 
-            player.setVelocity(direction.multiply(2.0).setY(1));
+            player.setVelocity(direction.multiply(1.5).setY(2));
         }
     }
 
@@ -90,9 +91,8 @@ public class GA_Events implements Listener {
         Player player = event.getPlayer();
         Block block = Objects.requireNonNull(event.getTo()).getBlock();
 
-        if (!block.isEmpty()) {
+        if ((((Entity)player).isOnGround() || block.isLiquid()) && doubleJump.remove(player)) {
             player.setAllowFlight(true);
-            doubleJump.remove(player);
         }
     }
 

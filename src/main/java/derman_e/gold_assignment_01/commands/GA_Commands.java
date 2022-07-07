@@ -29,7 +29,7 @@ public class GA_Commands extends AbstractCommand {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> tabs = new ArrayList<>();
 
-        if (args.length == 1) {
+        if (args.length == 0) {
             tabs.add("upgrade");
             tabs.add("helpme");
         }
@@ -42,62 +42,56 @@ public class GA_Commands extends AbstractCommand {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (label.equalsIgnoreCase("ga")) {
-                if (args.length <= 0) {
-                    player.sendMessage(ChatColor.RED + "명령어의 인자가 너무 적거나 없습니다! "+ ChatColor.YELLOW + "/ga help" + ChatColor.RED + " 명령어를 통해 도움말을 확인할 수 있습니다.");
+            if (label.equalsIgnoreCase("upgrade")) {
+                ItemStack mainHandIS = player.getInventory().getItemInMainHand();
+                ItemMeta mainHandIM = mainHandIS.getItemMeta();
+
+                if (!mainHandIS.equals(new ItemStack(Material.DIAMOND_SWORD))) {
+                    player.sendMessage(ChatColor.RED + "주로 사용하는 손에 다이아몬드 검을 들고 있어야 합니다!");
                 } else {
-                    ItemStack mainHandItemStack = player.getInventory().getItemInMainHand();
-                    ItemMeta mainHandItemMeta = mainHandItemStack.getItemMeta();
+                    int random = (int)(Math.random() * 100 + 1);
 
-                    if (args[0].equalsIgnoreCase("upgrade")) {
-                        if (!mainHandItemStack.equals(new ItemStack(Material.DIAMOND_SWORD))) {
-                            player.sendMessage(ChatColor.RED + "주로 사용하는 손에 다이아몬드 검을 들고 있어야 합니다!");
+                    if (Objects.requireNonNull(mainHandIM).getEnchantLevel(Enchantment.DAMAGE_ALL) == 0) {
+                        mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                        player.sendMessage(ChatColor.AQUA + "100% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+                    } else if (mainHandIM.getEnchantLevel(Enchantment.DAMAGE_ALL) == 1) {
+                        if (random <= 80) {
+                            mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                            player.sendMessage(ChatColor.AQUA + "80% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
                         } else {
-                            int random = (int)(Math.random() * 100 + 1);
-
-                            if (Objects.requireNonNull(mainHandItemMeta).getEnchantLevel(Enchantment.DAMAGE_ALL) == 0) {
-                                mainHandItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                                player.sendMessage(ChatColor.AQUA + "100% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                            } else if (mainHandItemMeta.getEnchantLevel(Enchantment.DAMAGE_ALL) == 1) {
-                                if (random <= 80) {
-                                    mainHandItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                                    player.sendMessage(ChatColor.AQUA + "80% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                                } else {
-                                    player.sendMessage(ChatColor.YELLOW + "80% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
-                                }
-                            } else if (mainHandItemMeta.getEnchantLevel(Enchantment.DAMAGE_ALL) == 2) {
-                                if (random <= 60) {
-                                    mainHandItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                                    player.sendMessage(ChatColor.AQUA + "60% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                                } else {
-                                    player.sendMessage(ChatColor.YELLOW + "60% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
-                                }
-                            } else if (mainHandItemMeta.getEnchantLevel(Enchantment.DAMAGE_ALL) == 3) {
-                                if (random <= 40) {
-                                    mainHandItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                                    player.sendMessage(ChatColor.AQUA + "40% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                                } else {
-                                    player.sendMessage(ChatColor.YELLOW + "40% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
-                                }
-                            } else if (mainHandItemMeta.getEnchantLevel(Enchantment.DAMAGE_ALL) == 4) {
-                                if (random <= 20) {
-                                    mainHandItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                                    player.sendMessage(ChatColor.AQUA + "20% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                                } else {
-                                    player.sendMessage(ChatColor.YELLOW + "20% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
-                                }
-                            }
+                            player.sendMessage(ChatColor.YELLOW + "80% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
                         }
-                    } else if (args[0].equalsIgnoreCase("helpme")) {
-                        World world = player.getWorld();
-                        Location location = player.getLocation();
-
-                        world.spawnEntity(location, EntityType.IRON_GOLEM);
-                        world.dropItem(location, new ItemStack(Material.NETHERITE_CHESTPLATE));
-
-                        player.sendMessage(ChatColor.WHITE + "당신을 도와주기 위해 " + ChatColor.GOLD + "아이언맨" + ChatColor.WHITE + "이 " + ChatColor.GRAY + "여분의 슈트" + ChatColor.WHITE + "를 가지고 나타났습니다!");
+                    } else if (mainHandIM.getEnchantLevel(Enchantment.DAMAGE_ALL) == 2) {
+                        if (random <= 60) {
+                            mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                            player.sendMessage(ChatColor.AQUA + "60% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+                        } else {
+                            player.sendMessage(ChatColor.YELLOW + "60% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
+                        }
+                    } else if (mainHandIM.getEnchantLevel(Enchantment.DAMAGE_ALL) == 3) {
+                        if (random <= 40) {
+                            mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                            player.sendMessage(ChatColor.AQUA + "40% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+                        } else {
+                            player.sendMessage(ChatColor.YELLOW + "40% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
+                        }
+                    } else if (mainHandIM.getEnchantLevel(Enchantment.DAMAGE_ALL) == 4) {
+                        if (random <= 20) {
+                            mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                            player.sendMessage(ChatColor.AQUA + "20% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+                        } else {
+                            player.sendMessage(ChatColor.YELLOW + "20% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
+                        }
                     }
                 }
+            } else if (label.equalsIgnoreCase("helpme")) {
+                World world = player.getWorld();
+                Location location = player.getLocation();
+
+                world.spawnEntity(location, EntityType.IRON_GOLEM);
+                world.dropItem(location, new ItemStack(Material.NETHERITE_CHESTPLATE));
+
+                player.sendMessage(ChatColor.WHITE + "당신을 도와주기 위해 " + ChatColor.GOLD + "아이언맨" + ChatColor.WHITE + "이 " + ChatColor.GRAY + "여분의 슈트" + ChatColor.WHITE + "를 가지고 나타났습니다!");
             }
         }
 
