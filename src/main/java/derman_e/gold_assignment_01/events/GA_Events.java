@@ -1,7 +1,6 @@
 package derman_e.gold_assignment_01.events;
 
 import derman_e.gold_assignment_01.main;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -38,21 +37,14 @@ public class GA_Events implements Listener {
                 @Override
                 public void run() {
                     if (player.isSneaking()) {
-                        for (Player p : Bukkit.getOnlinePlayers()) {
-                            if (time[0] != 0) {
-                                if (!player.isSneaking()) {
-                                    cancel();
-                                } else {
-                                    time[0]--;
-                                }
-                            } else {
-                                player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20, 1, false, false));
-                                time[0] = 20;
-                                cancel();
-                            }
+                        if (time[0] >= 0) {
+                            time[0]--;
+                        } else {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20, 1, false, true));
+                            time[0] = 20;
+                            cancel();
                         }
                     } else {
-                        time[0] = 20;
                         cancel();
                     }
                 }
