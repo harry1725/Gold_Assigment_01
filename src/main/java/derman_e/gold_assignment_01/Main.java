@@ -31,6 +31,10 @@ public final class main extends JavaPlugin implements Listener {
         Bukkit.getConsoleSender().sendMessage(message);
     }
 
+    public static int getLineNumber() {
+        return Thread.currentThread().getStackTrace()[2].getLineNumber();
+    }
+
     @Override
     public void onEnable() {
         GA_Commands cmd_upgrade = new GA_Commands(this, "upgrade");
