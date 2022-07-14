@@ -102,7 +102,7 @@ public class GA_Commands extends AbstractCommand {
                 world.spawnEntity(location, EntityType.IRON_GOLEM);
                 world.dropItem(location, new ItemStack(Material.NETHERITE_CHESTPLATE));
 
-                player.sendMessage(ChatColor.WHITE + "당신을 도와주기 위해 " + ChatColor.GOLD + "아이언맨" + ChatColor.WHITE + "이 " + ChatColor.GRAY + "여분의 슈트" + ChatColor.WHITE + "를 가지고 나타났습니다!");
+                player.sendMessage(ChatColor.WHITE + "당신을 도와주기 위해 " + ChatColor.GOLD + "아이언 맨" + ChatColor.WHITE + "이 " + ChatColor.GRAY + "여분의 슈트" + ChatColor.WHITE + "를 가지고 나타났습니다!");
             }
         }
 

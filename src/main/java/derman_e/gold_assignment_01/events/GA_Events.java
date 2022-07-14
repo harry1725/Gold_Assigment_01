@@ -30,15 +30,20 @@ public class GA_Events implements Listener {
     @EventHandler
     public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
         Player player = event.getPlayer();
-        PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, 20, 1, true, true);
+        PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, 25, 1, true, true);
         final int[] time = {0};
 
-        if (player.isSneaking()) {
+        if (!player.isSneaking()) {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    if (time[0] < 20 ) {
+                    if (time[0] < 20) {
                         time[0]++;
+
+                        if (!player.isSneaking()) {
+                            time[0] = 0;
+                            cancel();
+                        }
                     } else {
                         time[0] = 0;
                         player.addPotionEffect(jumpBoost);
@@ -46,7 +51,6 @@ public class GA_Events implements Listener {
                 }
             }.runTaskTimer(Main, 0L, 1L);
         } else {
-            time[0] = 0;
             player.removePotionEffect(PotionEffectType.JUMP);
         }
     }
@@ -71,7 +75,7 @@ public class GA_Events implements Listener {
             player.setAllowFlight(false);
             player.setFlying(false);
 
-            player.setVelocity(direction.multiply(1).setY(1));
+            player.setVelocity(direction.multiply(0.5).setY(0.5));
         }
     }
 
@@ -81,8 +85,19 @@ public class GA_Events implements Listener {
         Block block = Objects.requireNonNull(event.getTo()).getBlock();
 
         if ((((Entity)player).isOnGround() || block.isLiquid()) && doubleJump.remove(player)) {
-            doubleJump.remove(player);
             player.setFlying(false);
+            player.setAllowFlight(true);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerGameModeChange(PlayerGameModeChangeEvent event) {
+        Player player = event.getPlayer();
+        GameMode gamemode = player.getGameMode();
+
+        if (gamemode == GameMode.SURVIVAL || gamemode == GameMode.ADVENTURE) {
+            player.setFlying(false);
+            player.setFlySpeed(0);
             player.setAllowFlight(true);
         }
     }
