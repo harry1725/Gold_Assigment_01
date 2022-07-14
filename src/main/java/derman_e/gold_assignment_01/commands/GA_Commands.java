@@ -57,7 +57,7 @@ public class GA_Commands extends AbstractCommand {
                             break;
                         case 1:
                             if (random <= 80) {
-                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 2);
                                 player.sendMessage(ChatColor.AQUA + "80% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
                             } else {
                                 player.sendMessage(ChatColor.YELLOW + "80% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
@@ -66,7 +66,7 @@ public class GA_Commands extends AbstractCommand {
                             break;
                         case 2:
                             if (random <= 60) {
-                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 3);
                                 player.sendMessage(ChatColor.AQUA + "60% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
                             } else {
                                 player.sendMessage(ChatColor.YELLOW + "60% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
@@ -75,7 +75,7 @@ public class GA_Commands extends AbstractCommand {
                             break;
                         case 3:
                             if (random <= 40) {
-                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 4);
                                 player.sendMessage(ChatColor.AQUA + "40% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
                             } else {
                                 player.sendMessage(ChatColor.YELLOW + "40% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
@@ -84,7 +84,7 @@ public class GA_Commands extends AbstractCommand {
                             break;
                         case 4:
                             if (random <= 20) {
-                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 5);
                                 player.sendMessage(ChatColor.AQUA + "20% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
                             } else {
                                 player.sendMessage(ChatColor.YELLOW + "20% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");

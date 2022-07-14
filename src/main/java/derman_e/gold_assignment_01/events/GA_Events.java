@@ -30,7 +30,7 @@ public class GA_Events implements Listener {
     @EventHandler
     public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
         Player player = event.getPlayer();
-        final int[] time = {0};
+        final int[] time = {-1};
 
         if (player.isSneaking()) {
             new BukkitRunnable() {
@@ -38,11 +38,13 @@ public class GA_Events implements Listener {
                 public void run() {
                     time[0]++;
 
-                    if (time[0] >= 20) {
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20, 1, false, true));
+                    if (time[0] >= 19) {
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20, 0, false, true));
                     }
                 }
             }.runTaskTimer(Main, 0L, 1L);
+        } else {
+            time[0] = 0;
         }
     }
 
@@ -76,6 +78,7 @@ public class GA_Events implements Listener {
         Block block = Objects.requireNonNull(event.getTo()).getBlock();
 
         if ((((Entity)player).isOnGround() || block.isLiquid()) && doubleJump.remove(player)) {
+            doubleJump.remove(player);
             player.setAllowFlight(true);
         }
     }
