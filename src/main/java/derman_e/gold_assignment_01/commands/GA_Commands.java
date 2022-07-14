@@ -11,11 +11,9 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 public class GA_Commands extends AbstractCommand {
@@ -44,44 +42,57 @@ public class GA_Commands extends AbstractCommand {
 
             if (label.equalsIgnoreCase("upgrade")) {
                 ItemStack mainHandIS = player.getInventory().getItemInMainHand();
-                ItemMeta mainHandIM = mainHandIS.getItemMeta();
+                int mainHandEnchantLevel = mainHandIS.getEnchantmentLevel(Enchantment.DAMAGE_ALL);
 
                 if (!mainHandIS.equals(new ItemStack(Material.DIAMOND_SWORD))) {
                     player.sendMessage(ChatColor.RED + "주로 사용하는 손에 다이아몬드 검을 들고 있어야 합니다!");
                 } else {
                     int random = (int)(Math.random() * 100 + 1);
 
-                    if (Objects.requireNonNull(mainHandIM).getEnchantLevel(Enchantment.DAMAGE_ALL) == 0) {
-                        mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                        player.sendMessage(ChatColor.AQUA + "100% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                    } else if (mainHandIM.getEnchantLevel(Enchantment.DAMAGE_ALL) == 1) {
-                        if (random <= 80) {
-                            mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                            player.sendMessage(ChatColor.AQUA + "80% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                        } else {
-                            player.sendMessage(ChatColor.YELLOW + "80% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
-                        }
-                    } else if (mainHandIM.getEnchantLevel(Enchantment.DAMAGE_ALL) == 2) {
-                        if (random <= 60) {
-                            mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                            player.sendMessage(ChatColor.AQUA + "60% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                        } else {
-                            player.sendMessage(ChatColor.YELLOW + "60% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
-                        }
-                    } else if (mainHandIM.getEnchantLevel(Enchantment.DAMAGE_ALL) == 3) {
-                        if (random <= 40) {
-                            mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                            player.sendMessage(ChatColor.AQUA + "40% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                        } else {
-                            player.sendMessage(ChatColor.YELLOW + "40% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
-                        }
-                    } else if (mainHandIM.getEnchantLevel(Enchantment.DAMAGE_ALL) == 4) {
-                        if (random <= 20) {
-                            mainHandIM.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                            player.sendMessage(ChatColor.AQUA + "20% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
-                        } else {
-                            player.sendMessage(ChatColor.YELLOW + "20% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
-                        }
+                    switch (mainHandEnchantLevel) {
+                        case 0:
+                            mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                            player.sendMessage(ChatColor.AQUA + "100% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+
+                            break;
+                        case 1:
+                            if (random <= 80) {
+                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                                player.sendMessage(ChatColor.AQUA + "80% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+                            } else {
+                                player.sendMessage(ChatColor.YELLOW + "80% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
+                            }
+
+                            break;
+                        case 2:
+                            if (random <= 60) {
+                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                                player.sendMessage(ChatColor.AQUA + "60% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+                            } else {
+                                player.sendMessage(ChatColor.YELLOW + "60% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
+                            }
+
+                            break;
+                        case 3:
+                            if (random <= 40) {
+                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                                player.sendMessage(ChatColor.AQUA + "40% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+                            } else {
+                                player.sendMessage(ChatColor.YELLOW + "40% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
+                            }
+
+                            break;
+                        case 4:
+                            if (random <= 20) {
+                                mainHandIS.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+                                player.sendMessage(ChatColor.AQUA + "20% 강화에 " + ChatColor.GREEN + "성공" + ChatColor.AQUA + "했습니다!");
+                            } else {
+                                player.sendMessage(ChatColor.YELLOW + "20% 강화에 " + ChatColor.RED + "실패" + ChatColor.YELLOW + "했습니다...");
+                            }
+
+                            break;
+                        default:
+                            player.sendMessage(ChatColor.RED + "강화 불가능한 날카로움 등급입니다. 강화는 0~4레벨의 날카로움만 가능합니다.");
                     }
                 }
             } else if (label.equalsIgnoreCase("helpme")) {
