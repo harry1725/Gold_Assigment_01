@@ -6,7 +6,7 @@
 
     <groupId>Derman_e</groupId>
     <artifactId>main</artifactId>
-    <version>1.2.5-SNAPSHOT</version>
+    <version>1.2.6-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Gold_Assignment_01</name>
