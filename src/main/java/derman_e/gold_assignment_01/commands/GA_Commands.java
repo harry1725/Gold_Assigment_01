@@ -44,7 +44,7 @@ public class GA_Commands extends AbstractCommand {
                 ItemStack mainHandIS = player.getInventory().getItemInMainHand();
                 int mainHandEnchantLevel = mainHandIS.getEnchantmentLevel(Enchantment.DAMAGE_ALL);
 
-                if (!mainHandIS.equals(new ItemStack(Material.DIAMOND_SWORD))) {
+                if (!mainHandIS.getType().equals(Material.DIAMOND_SWORD)) {
                     player.sendMessage(ChatColor.RED + "주로 사용하는 손에 다이아몬드 검을 들고 있어야 합니다!");
                 } else {
                     int random = (int)(Math.random() * 100 + 1);

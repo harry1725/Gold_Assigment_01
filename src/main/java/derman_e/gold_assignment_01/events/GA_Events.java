@@ -66,7 +66,7 @@ public class GA_Events implements Listener {
             player.setAllowFlight(false);
             player.setFlying(false);
 
-            player.setVelocity(direction.multiply(1.5).setY(1));
+            player.setVelocity(direction.multiply(1.5).setY(1.5));
         }
     }
 
