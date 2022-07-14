@@ -92,7 +92,7 @@ public class GA_Commands extends AbstractCommand {
 
                             break;
                         default:
-                            player.sendMessage(ChatColor.RED + "강화 불가능한 날카로움 등급입니다. 강화는 0~4레벨의 날카로움만 가능합니다.");
+                            player.sendMessage(ChatColor.RED + "강화 불가능한 날카로움 등급입니다. 강화는 I~IV 등급의 날카로움만 가능합니다.");
                     }
                 }
             } else if (label.equalsIgnoreCase("helpme")) {

@@ -37,16 +37,17 @@ public class GA_Events implements Listener {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    time[0]++;
-
-                    if (time[0] >= 20) {
-                        player.addPotionEffect(jumpBoost);
+                    if (time[0] < 20 ) {
+                        time[0]++;
+                    } else {
                         time[0] = 0;
+                        player.addPotionEffect(jumpBoost);
                     }
                 }
             }.runTaskTimer(Main, 0L, 1L);
         } else {
             time[0] = 0;
+            player.removePotionEffect(PotionEffectType.JUMP);
         }
     }
 
@@ -70,7 +71,7 @@ public class GA_Events implements Listener {
             player.setAllowFlight(false);
             player.setFlying(false);
 
-            player.setVelocity(direction.multiply(1).setY(1.2));
+            player.setVelocity(direction.multiply(1).setY(1));
         }
     }
 
