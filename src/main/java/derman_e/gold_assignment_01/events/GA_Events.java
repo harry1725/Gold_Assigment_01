@@ -1,6 +1,7 @@
 package derman_e.gold_assignment_01.events;
 
 import derman_e.gold_assignment_01.main;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -11,20 +12,31 @@ import org.bukkit.event.player.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
 public class GA_Events implements Listener {
     public final Logger logger = Logger.getLogger("Minecraft");
     public static main Main;
-    private final List<Player> doubleJump = new ArrayList<>();
 
     public GA_Events(main plugin) {
         Main = plugin;
+    }
+
+    public void scBoard(Player player, int sc) {
+        ScoreboardManager sm = Bukkit.getScoreboardManager();
+
+        Scoreboard board = Objects.requireNonNull(sm).getNewScoreboard();
+        Objective obj = board.registerNewObjective("doubleJump", "dummy", "doubleJump");
+        Score score = obj.getScore(player.getName());
+
+        score.setScore(sc);
     }
 
     @EventHandler
@@ -70,7 +82,7 @@ public class GA_Events implements Listener {
 
         if ((gamemode == GameMode.SURVIVAL || gamemode == GameMode.ADVENTURE) && !player.isFlying()) {
             event.setCancelled(true);
-            doubleJump.add(player);
+            scBoard(player, 1);
 
             player.setAllowFlight(false);
             player.setFlying(false);
@@ -84,7 +96,8 @@ public class GA_Events implements Listener {
         Player player = event.getPlayer();
         Block block = Objects.requireNonNull(event.getTo()).getBlock();
 
-        if ((((Entity)player).isOnGround() || block.isLiquid()) && doubleJump.remove(player)) {
+        if (((Entity)player).isOnGround() || block.isLiquid()) {
+            scBoard(player, 0);
             player.setFlying(false);
             player.setAllowFlight(true);
         }
@@ -105,7 +118,7 @@ public class GA_Events implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        doubleJump.remove(player);
+        scBoard(player, 0);
     }
 
 }
